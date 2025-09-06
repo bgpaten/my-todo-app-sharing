@@ -1,5 +1,12 @@
 import React, { useState } from "react";
 import { supabase } from "../supabaseClient";
+import { Notyf } from "notyf";
+import "notyf/notyf.min.css";
+
+const notyf = new Notyf({
+  duration: 3000,
+  position: { x: "right", y: "top" },
+});
 
 function Auth() {
   const [loading, setLoading] = useState(false);
@@ -15,9 +22,9 @@ function Auth() {
         password,
       });
       if (error) throw error;
-      alert("Logged in successfully!");
+      notyf.success("Logged in successfully!");
     } catch (error) {
-      alert(error.error_description || error.message);
+      notyf.error(error.error_description || error.message);
     } finally {
       setLoading(false);
     }
@@ -32,9 +39,11 @@ function Auth() {
         password,
       });
       if (error) throw error;
-      alert("Signed up successfully! Check your email for verification.");
+      notyf.success(
+        "Signed up successfully! Check your email for verification."
+      );
     } catch (error) {
-      alert(error.error_description || error.message);
+      notyf.error(error.error_description || error.message);
     } finally {
       setLoading(false);
     }

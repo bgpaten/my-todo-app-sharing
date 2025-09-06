@@ -6,6 +6,7 @@ import Auth from "./components/Auth";
 import Account from "./components/Account";
 import Todo from "./components/Todo";
 import SharedTodo from "./components/SharedTodo";
+import Notifikasi from "./components/Notifikasi";
 
 function App() {
   const [session, setSession] = useState(null);
@@ -55,6 +56,8 @@ function App() {
               >
                 Shared
               </button>
+
+              <Notifikasi session={session} />
 
               {/* ✅ Always show Account icon (dropdown) */}
               <Account session={session} />
